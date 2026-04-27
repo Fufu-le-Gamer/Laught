@@ -1,2 +1,6 @@
-﻿  Main.cpp
-  Make Laught.vcxproj -> C:\Users\yducrocq\Documents\GitHub\Laught\Make Laught\x64\Debug\Make Laught.exe
+﻿  AnimationManager.cpp
+  Character.cpp
+C:\Users\pette\source\repos\Laught\Make Laught\Make Laught\Character.cpp(33,27): warning C4834: discarding return value of function with [[nodiscard]] attribute
+  Main.cpp
+  Generating Code...
+  Make Laught.vcxproj -> C:\Users\pette\source\repos\Laught\Make Laught\x64\Debug\Make Laught.exe
