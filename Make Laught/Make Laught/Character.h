@@ -10,6 +10,8 @@ public:
 	Character();
 
 	bool loadTexture(const std::string& path);
+	sf::Texture& getTexture();
+	sf::Sprite& getSprite();
 
 	void addAnimation(
 		const std::string& name,
@@ -28,7 +30,7 @@ public:
 	//void setState(const std::string& state);
 
 	void update(float dt);
-	void draw(sf::RenderTarget& target) const;
+	void draw(sf::RenderWindow& window) const;
 
 private:
 	sf::Texture m_texture;

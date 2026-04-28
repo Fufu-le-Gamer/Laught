@@ -1,18 +1,26 @@
 #include <SFML/Graphics.hpp>
 #include "Character.h"
+#include "Button.h"
 
 int main()
 {
 	sf::RenderWindow window(sf::VideoMode({ 800, 600 }), "Character SFML");
 	window.setFramerateLimit(60);
 
+	//sf::Texture buttonTexture;
+	//if (!buttonTexture.loadFromFile("asset/buttons.png"))
+	//	return -1;
+
+
 	sf::Texture backgroundTexture;
 	if (!backgroundTexture.loadFromFile("asset/background/maison.png"))
 		return -1;
 
+	//sf::Sprite button(buttonTexture);
+	//button.setPosition({600.f, 500.f});
 	sf::Sprite background(backgroundTexture);
 	Character player;
-
+	Button button;
 
 	player.addAnimation("idle", "asset/Buck Borris/idle.png", 36, 0, 10, 23, 4, 0.15f, true);
 	player.addAnimation("run", "asset/Buck Borris/run.png", 36, 0, 10, 23, 3, 0.08f, true);
@@ -22,6 +30,8 @@ int main()
 
 	player.setPosition(100.f, 400.f);
 	player.playAnimation("idle");
+	button.setPositionButton(500.f, 435.f);
+	button.playAnimation("asset/buttons.png");
 
 	sf::Clock clock;
 
@@ -49,7 +59,9 @@ int main()
 		// --- Draw ---
 		window.clear(sf::Color(230, 130, 30));
 		window.draw(background);
+		button.drawButton(window);
 		player.draw(window);
+
 		window.display();
 	}
 

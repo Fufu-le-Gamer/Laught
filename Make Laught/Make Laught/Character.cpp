@@ -20,6 +20,16 @@ bool Character::loadTexture(const std::string& path)
 	return true;
 }
 
+sf::Texture& Character::getTexture()
+{
+	return m_texture;
+}
+
+sf::Sprite& Character::getSprite()
+{
+	return m_sprite;
+}
+
 void Character::addAnimation(
 	const std::string& name,
 	const std::string& texturePath,
@@ -65,12 +75,12 @@ void Character::handleInput()
 {
 	m_velocity.x = 0.f;
 
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Right))
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::D))
 	{
 		m_velocity.x += m_speed;
 	}
 
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Left))
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Q))
 	{
 		m_velocity.x -= m_speed;
 	}
@@ -155,7 +165,7 @@ void Character::update(float dt)
 	m_sprite.setTextureRect(m_animManager.getCurrentRect());
 }
 
-void Character::draw(sf::RenderTarget& target) const
+void Character::draw(sf::RenderWindow& window) const
 {
-	target.draw(m_sprite);
+	window.draw(m_sprite);
 }
