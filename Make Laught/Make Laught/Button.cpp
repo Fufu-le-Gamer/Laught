@@ -13,6 +13,11 @@ bool Button::loadTextureButton(const std::string& path)
 {
 	if (!m_texture.loadFromFile(path))
 		return false;
+	spriteButton.setTexture(m_texture);
+	// On initialise avec la frame par défaut
+	spriteButton.setTextureRect(sf::IntRect({ 0, 0 }, { 16, 14 }));
+	return true;
+
 }
 bool Button::isColliding(const sf::Sprite& a, const sf::Sprite& b)
 {
@@ -40,7 +45,7 @@ void Button::setScaleButton(float sx, float sy)
 {
 	spriteButton.setScale({ sx, sy });
 }
-void Button::drawButton(sf::RenderWindow& window) const
+void Button::drawButton(sf::RenderTarget& target) const
 {
-	window.draw(spriteButton);
+	target.draw(spriteButton);
 }

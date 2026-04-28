@@ -1,3 +1,4 @@
-﻿  Button.cpp
-C:\Users\pette\source\repos\Laught\Make Laught\Make Laught\Button.cpp(16,1): warning C4715: 'Button::loadTextureButton': not all control paths return a value
-  Make Laught.vcxproj -> C:\Users\pette\source\repos\Laught\Make Laught\x64\Debug\Make Laught.exe
+﻿  EventManager.cpp
+  Main.cpp
+  Génération de code en cours...
+  Make Laught.vcxproj -> C:\Users\yducrocq\Documents\GitHub\Laught\Make Laught\x64\Debug\Make Laught.exe

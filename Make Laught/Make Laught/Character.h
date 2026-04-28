@@ -30,7 +30,7 @@ public:
 	//void setState(const std::string& state);
 
 	void update(float dt);
-	void draw(sf::RenderWindow& window) const;
+	void draw(sf::RenderTarget& target) const;
 
 private:
 	sf::Texture m_texture;

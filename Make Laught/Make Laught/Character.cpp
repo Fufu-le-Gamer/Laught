@@ -165,7 +165,7 @@ void Character::update(float dt)
 	m_sprite.setTextureRect(m_animManager.getCurrentRect());
 }
 
-void Character::draw(sf::RenderWindow& window) const
+void Character::draw(sf::RenderTarget& target) const
 {
-	window.draw(m_sprite);
+	target.draw(m_sprite);
 }

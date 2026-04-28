@@ -19,7 +19,7 @@ public:
 	void playAnimation(Character& character);
 	void setPositionButton(float x, float y);
 	void setScaleButton(float sx, float sy);
-	void drawButton(sf::RenderWindow& window) const;
-
+	void drawButton(sf::RenderTarget& target) const;
+	const sf::Sprite& getSprite() const { return spriteButton; }
 };
 
