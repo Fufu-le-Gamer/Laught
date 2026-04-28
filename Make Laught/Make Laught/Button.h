@@ -16,7 +16,7 @@ public:
 	Button();
 	bool loadTextureButton(const std::string& path);
 	bool isColliding(const sf::Sprite& a, const sf::Sprite& b);
-	void playAnimation(const std::string& texturePath);
+	void playAnimation(Character& character);
 	void setPositionButton(float x, float y);
 	void setScaleButton(float sx, float sy);
 	void drawButton(sf::RenderWindow& window) const;

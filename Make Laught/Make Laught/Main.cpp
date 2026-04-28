@@ -31,7 +31,8 @@ int main()
 	player.setPosition(100.f, 400.f);
 	player.playAnimation("idle");
 	button.setPositionButton(500.f, 435.f);
-	button.playAnimation("asset/buttons.png");
+	button.loadTextureButton("asset/buttons.png");
+	button.setPositionButton(500.f, 430.f);
 
 	sf::Clock clock;
 
@@ -60,6 +61,7 @@ int main()
 		window.clear(sf::Color(230, 130, 30));
 		window.draw(background);
 		button.drawButton(window);
+		button.playAnimation(player);
 		player.draw(window);
 
 		window.display();

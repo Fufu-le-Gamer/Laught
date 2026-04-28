@@ -19,23 +19,19 @@ bool Button::isColliding(const sf::Sprite& a, const sf::Sprite& b)
 	return a.getGlobalBounds().findIntersection(b.getGlobalBounds()).has_value();
 }
 
-void Button::playAnimation(const std::string& texturePath)
+void Button::playAnimation(Character& character)
 {
-	Character myCharacter;
-	m_texture.loadFromFile(texturePath);
-	spriteButton.setTexture(m_texture);
+	bool contact = isColliding(spriteButton, character.getSprite());
 
-	sf::Sprite  characterSprite = myCharacter.getSprite();
-	bool contact = isColliding(spriteButton, myCharacter.getSprite());
-	if (spriteButton.getTextureRect().findIntersection(characterSprite.getTextureRect()).has_value())
-
+	if (!contact)
 		spriteButton.setTextureRect(sf::IntRect({ 0, 0 }, { 16, 14 }));
 	else
-		spriteButton.setTextureRect(sf::IntRect({ 15, 0 }, { 16, 14 }));
-
-
-
+		if (!sf::Keyboard::isKeyPressed(sf::Keyboard::Key::E))
+			spriteButton.setTextureRect(sf::IntRect({ 0, 0 }, { 15, 14 }));   
+		else
+			spriteButton.setTextureRect(sf::IntRect({ 17, 0 }, { 14, 14 })); //pressé
 }
+
 void Button::setPositionButton(float x, float y)
 {
 	spriteButton.setPosition({ x, y });
