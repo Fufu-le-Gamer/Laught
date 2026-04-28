@@ -1,6 +1,6 @@
 ﻿  AnimationManager.cpp
   Character.cpp
-C:\Users\pette\source\repos\Laught\Make Laught\Make Laught\Character.cpp(33,27): warning C4834: discarding return value of function with [[nodiscard]] attribute
+C:\Users\yducrocq\Documents\GitHub\Laught\Make Laught\Make Laught\Character.cpp(33,27): warning C4834: abandon de la valeur de retour de la fonction avec l’attribut [[nodiscard]]
   Main.cpp
-  Generating Code...
-  Make Laught.vcxproj -> C:\Users\pette\source\repos\Laught\Make Laught\x64\Debug\Make Laught.exe
+  Génération de code en cours...
+  Make Laught.vcxproj -> C:\Users\yducrocq\Documents\GitHub\Laught\Make Laught\x64\Debug\Make Laught.exe
