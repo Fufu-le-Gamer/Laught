@@ -51,6 +51,18 @@ int main()
 		return -1;
 	sf::Sound fartSound(fartBuff);
 
+	sf::Texture macronTexture;
+    if(!macronTexture.loadFromFile("asset/Macron.jpg"))
+		return -1;
+	sf::Sprite macronSprite(macronTexture);
+	macronSprite.setOrigin({ macronTexture.getSize().x / 2.f, macronTexture.getSize().y / 2.f });
+	macronSprite.setPosition({ 400.f, 300.f });
+
+	sf::SoundBuffer macronBuff;
+	if (!macronBuff.loadFromFile("sound/Macron.mp3"))
+		return -1;
+	sf::Sound macronSound(macronBuff);
+
     Character player;
     Button button;
     EventManager eventMana;
@@ -90,7 +102,7 @@ int main()
         bool isPressingE = sf::Keyboard::isKeyPressed(sf::Keyboard::Key::E);
         bool collision = button.isColliding(button.getSprite(), player.getSprite());
 
-        if (isPressingE && collision && !wasKeyPressed) {
+        if (isPressingE && collision && !wasKeyPressed && !eventMana.isEventRunning()) {
             eventMana.triggerRandomEvent(player);
             if (eventMana.isScreamer())
                 screamSound.play();
@@ -98,6 +110,8 @@ int main()
                 pandariaSound.play();
 			if (eventMana.isFart())
 				fartSound.play();
+			if (eventMana.isMacron())
+				macronSound.play();
 
             wasKeyPressed = true;     // Marqueur pour ne changer qu'une fois par pression
         }
@@ -138,6 +152,9 @@ int main()
         if (eventMana.isPandaria()) {
             window.draw(pandariaSprite);
         }
+		if (eventMana.isMacron()) {
+			window.draw(macronSprite);
+		}
         window.display();
     }
 	return 0;

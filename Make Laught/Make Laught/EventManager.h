@@ -17,6 +17,8 @@ public:
 	bool isScreamer() const { return m_screamer; }
 	bool isPandaria() const { return m_pandaria; }
 	bool isFart() const { return m_fart; }
+	bool isMacron() const { return m_macron; }
+	bool isEventRunning() const { return m_screamer || m_pandaria || m_fart || m_macron; }
 
 private:
 	bool m_inverted = false;
@@ -24,6 +26,7 @@ private:
 	bool m_screamer = false;
 	bool m_pandaria = false;
 	bool m_fart = false;
+	bool m_macron = false;
 
 	sf::Clock m_eventClock;
 
@@ -32,6 +35,7 @@ private:
 	void EventScreamer();
 	void EventPandaria();
 	void EventFart();
+	void EventMacron();
 
 };
 
