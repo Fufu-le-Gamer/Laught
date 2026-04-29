@@ -10,21 +10,21 @@ EventManager::EventManager()
 
 void EventManager::update()
 {
-	if (m_screamer && m_eventClock.getElapsedTime().asSeconds() > 2.0f)
-	{
-		m_screamer = false;
-	}
+	float elapsed = m_eventClock.getElapsedTime().asSeconds();
+	if (m_screamer && elapsed > 2.0f) m_screamer = false;
+	if (m_pandaria && elapsed > 2.0f) m_pandaria = false;
 }
 
 void EventManager::triggerRandomEvent(Character& player)
 {
-	int choice = std::rand() % 3; // 3 action possibles (0, 1)
+	int choice = std::rand() % 4; // 4 action possibles (0, 1)
 
 	switch (choice)
 	{
 		case 0: EventInvert(); break;
 		case 1: EventFlip(); break;
 		case 2: EventScreamer(); break;
+		case 3: EventPandaria(); break;
 	}
 }
 
@@ -41,5 +41,11 @@ void EventManager::EventFlip()
 void EventManager::EventScreamer()
 {
 	m_screamer = true;
+	m_eventClock.restart();
+}
+
+void EventManager::EventPandaria()
+{
+	m_pandaria = true;
 	m_eventClock.restart();
 }

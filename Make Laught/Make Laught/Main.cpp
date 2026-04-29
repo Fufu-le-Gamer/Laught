@@ -22,19 +22,29 @@ int main()
     sf::Texture backgroundTexture;
     if (!backgroundTexture.loadFromFile("asset/background/maison.png"))
         return -1;
-   sf::Sprite background(backgroundTexture);
+    sf::Sprite background(backgroundTexture);
 
-	sf::Texture screamerTexture;
-    if(!screamerTexture.loadFromFile("asset/Romain.jpg"))
-		return -1;
+    sf::Texture screamerTexture;
+    if (!screamerTexture.loadFromFile("asset/Romain.jpg"))
+        return -1;
     sf::Sprite screamerSprite(screamerTexture);
     screamerSprite.setOrigin({ screamerTexture.getSize().x / 2.f, screamerTexture.getSize().y / 2.f });
     screamerSprite.setPosition({ 400.f, 600.f });
 
-	sf::SoundBuffer soundBuff;
-	if (!soundBuff.loadFromFile("sound/Scream.mp3"))
-		return -1;
-	sf::Sound screamSound(soundBuff);
+    sf::SoundBuffer screamBuff;
+    if (!screamBuff.loadFromFile("sound/Scream.mp3"))
+        return -1;
+    sf::Sound screamSound(screamBuff);
+
+    sf::Texture pandariaTexture;
+    pandariaTexture.loadFromFile("asset/Pandaria.png");
+    sf::Sprite pandariaSprite(pandariaTexture);
+	pandariaSprite.setOrigin({ pandariaTexture.getSize().x / 2.f, pandariaTexture.getSize().y / 2.f });
+    pandariaSprite.setPosition({ 400.f, 300.f });
+
+    sf::SoundBuffer pandariaBuff;
+    pandariaBuff.loadFromFile("sound/Foule.mp3");
+    sf::Sound pandariaSound(pandariaBuff);
 
     Character player;
     Button button;
@@ -69,7 +79,7 @@ int main()
         const float dt = clock.restart().asSeconds();
         player.update(dt);
         button.playAnimation(player);
-		eventMana.update();
+        eventMana.update();
 
         // On vérifie si la touche E est pressée ET si le joueur touche le bouton
         bool isPressingE = sf::Keyboard::isKeyPressed(sf::Keyboard::Key::E);
@@ -77,9 +87,11 @@ int main()
 
         if (isPressingE && collision && !wasKeyPressed) {
             eventMana.triggerRandomEvent(player);
-            if(eventMana.isScreamer()) {
+            if (eventMana.isScreamer())
                 screamSound.play();
-			}
+            if (eventMana.isPandaria())
+                pandariaSound.play();
+
             wasKeyPressed = true;     // Marqueur pour ne changer qu'une fois par pression
         }
         if (!isPressingE) {
@@ -113,12 +125,13 @@ int main()
         else {
             window.draw(sceneSprite);
         }
-        if(eventMana.isScreamer()) {
+        if (eventMana.isScreamer()) {
             window.draw(screamerSprite);
-		}
-
+        }
+        if (eventMana.isPandaria()) {
+            window.draw(pandariaSprite);
+        }
         window.display();
     }
-
-    return 0;
+	return 0;
 }

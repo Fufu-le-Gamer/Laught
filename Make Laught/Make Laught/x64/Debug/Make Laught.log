@@ -1,2 +1,4 @@
 ﻿  Main.cpp
+C:\Users\yducrocq\Documents\GitHub\Laught\Make Laught\Make Laught\Main.cpp(40,33): warning C4834: abandon de la valeur de retour de la fonction avec l’attribut [[nodiscard]]
+C:\Users\yducrocq\Documents\GitHub\Laught\Make Laught\Make Laught\Main.cpp(46,30): warning C4834: abandon de la valeur de retour de la fonction avec l’attribut [[nodiscard]]
   Make Laught.vcxproj -> C:\Users\yducrocq\Documents\GitHub\Laught\Make Laught\x64\Debug\Make Laught.exe
