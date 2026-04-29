@@ -1,4 +1,5 @@
 #include <SFML/Graphics.hpp>
+#include <SFML/Audio.hpp>
 #include "Character.h"
 #include "Button.h"
 #include "EventManager.h"
@@ -6,30 +7,35 @@
 
 int main()
 {
-    // 1. Initialisation de la fenêtre
     sf::RenderWindow window(sf::VideoMode({ 800, 600 }), "Character SFML - Invert Mode");
     window.setFramerateLimit(60);
 
-    // 2. Chargement du Shader
     sf::Shader invertShader;
     if (!invertShader.loadFromFile("asset/invert.frag", sf::Shader::Type::Fragment)) {
         std::cerr << "Erreur : Impossible de charger le shader !" << std::endl;
-        // On continue quand même, mais l'effet ne marchera pas
     }
 
-    // 3. Création d'une RenderTexture (le "canevas" intermédiaire)
-    // Elle permet de dessiner tout ton jeu dessus, puis d'appliquer le shader au canevas complet
     sf::RenderTexture sceneTexture;
     if (!sceneTexture.resize({ 800, 600 }))
-    {
         return -1;
-    }
-    // 4. Chargement des textures classiques
+
     sf::Texture backgroundTexture;
     if (!backgroundTexture.loadFromFile("asset/background/maison.png"))
         return -1;
+   sf::Sprite background(backgroundTexture);
 
-    sf::Sprite background(backgroundTexture);
+	sf::Texture screamerTexture;
+    if(!screamerTexture.loadFromFile("asset/Romain.jpg"))
+		return -1;
+    sf::Sprite screamerSprite(screamerTexture);
+    screamerSprite.setOrigin({ screamerTexture.getSize().x / 2.f, screamerTexture.getSize().y / 2.f });
+    screamerSprite.setPosition({ 400.f, 600.f });
+
+	sf::SoundBuffer soundBuff;
+	if (!soundBuff.loadFromFile("sound/Scream.mp3"))
+		return -1;
+	sf::Sound screamSound(soundBuff);
+
     Character player;
     Button button;
     EventManager eventMana;
@@ -63,14 +69,17 @@ int main()
         const float dt = clock.restart().asSeconds();
         player.update(dt);
         button.playAnimation(player);
+		eventMana.update();
 
-        // Logique d'activation de l'inversion
         // On vérifie si la touche E est pressée ET si le joueur touche le bouton
         bool isPressingE = sf::Keyboard::isKeyPressed(sf::Keyboard::Key::E);
         bool collision = button.isColliding(button.getSprite(), player.getSprite());
 
         if (isPressingE && collision && !wasKeyPressed) {
             eventMana.triggerRandomEvent(player);
+            if(eventMana.isScreamer()) {
+                screamSound.play();
+			}
             wasKeyPressed = true;     // Marqueur pour ne changer qu'une fois par pression
         }
         if (!isPressingE) {
@@ -78,8 +87,6 @@ int main()
         }
 
         // --- Draw ---
-
-        // A. On dessine TOUT sur la RenderTexture
         sceneTexture.clear(sf::Color(230, 130, 30));
         sceneTexture.draw(background);
         button.drawButton(sceneTexture);
@@ -87,7 +94,6 @@ int main()
         player.draw(sceneTexture);
         sceneTexture.display();
 
-        // B. On affiche le résultat final sur la fenêtre
         window.clear();
 
         // On crée un sprite à partir de la texture de la scène
@@ -107,6 +113,9 @@ int main()
         else {
             window.draw(sceneSprite);
         }
+        if(eventMana.isScreamer()) {
+            window.draw(screamerSprite);
+		}
 
         window.display();
     }
