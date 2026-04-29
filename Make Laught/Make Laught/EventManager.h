@@ -16,12 +16,14 @@ public:
 	bool isFlipped() const { return m_flipped; }
 	bool isScreamer() const { return m_screamer; }
 	bool isPandaria() const { return m_pandaria; }
+	bool isFart() const { return m_fart; }
 
 private:
 	bool m_inverted = false;
 	bool m_flipped = false;
 	bool m_screamer = false;
 	bool m_pandaria = false;
+	bool m_fart = false;
 
 	sf::Clock m_eventClock;
 
@@ -29,6 +31,7 @@ private:
 	void EventFlip();
 	void EventScreamer();
 	void EventPandaria();
+	void EventFart();
 
 };
 

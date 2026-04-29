@@ -46,6 +46,11 @@ int main()
     pandariaBuff.loadFromFile("sound/Foule.mp3");
     sf::Sound pandariaSound(pandariaBuff);
 
+	sf::SoundBuffer fartBuff;
+    if(!fartBuff.loadFromFile("sound/Fart.mp3"))
+		return -1;
+	sf::Sound fartSound(fartBuff);
+
     Character player;
     Button button;
     EventManager eventMana;
@@ -91,6 +96,8 @@ int main()
                 screamSound.play();
             if (eventMana.isPandaria())
                 pandariaSound.play();
+			if (eventMana.isFart())
+				fartSound.play();
 
             wasKeyPressed = true;     // Marqueur pour ne changer qu'une fois par pression
         }

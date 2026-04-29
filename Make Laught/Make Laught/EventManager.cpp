@@ -13,11 +13,12 @@ void EventManager::update()
 	float elapsed = m_eventClock.getElapsedTime().asSeconds();
 	if (m_screamer && elapsed > 2.0f) m_screamer = false;
 	if (m_pandaria && elapsed > 2.0f) m_pandaria = false;
+	if (m_fart && elapsed > 2.0f) m_fart = false;
 }
 
 void EventManager::triggerRandomEvent(Character& player)
 {
-	int choice = std::rand() % 4; // 4 action possibles (0, 1)
+	int choice = std::rand() % 5; // 4 action possibles (0, 1)
 
 	switch (choice)
 	{
@@ -25,6 +26,7 @@ void EventManager::triggerRandomEvent(Character& player)
 		case 1: EventFlip(); break;
 		case 2: EventScreamer(); break;
 		case 3: EventPandaria(); break;
+		case 4: EventFart(); break;
 	}
 }
 
@@ -47,5 +49,11 @@ void EventManager::EventScreamer()
 void EventManager::EventPandaria()
 {
 	m_pandaria = true;
+	m_eventClock.restart();
+}
+
+void EventManager::EventFart()
+{
+	m_fart = true;
 	m_eventClock.restart();
 }
