@@ -1,2 +1,4 @@
-﻿  EventManager.cpp
-  Make Laught.vcxproj -> C:\Users\yducrocq\Documents\GitHub\Laught\Make Laught\x64\Debug\Make Laught.exe
+﻿  Main.cpp
+C:\Users\pette\source\repos\Laught\Make Laught\Make Laught\Main.cpp(79,30): warning C4834: discarding return value of function with [[nodiscard]] attribute
+C:\Users\pette\source\repos\Laught\Make Laught\Make Laught\Main.cpp(85,27): warning C4834: discarding return value of function with [[nodiscard]] attribute
+  Make Laught.vcxproj -> C:\Users\pette\source\repos\Laught\Make Laught\x64\Debug\Make Laught.exe
